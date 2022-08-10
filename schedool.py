@@ -19,8 +19,6 @@ SPACING_WEIGHT = 1
 RUNS = 100000
 
 num_people = len(people)
-best_allocation = [None] * num_people
-best_allocation_score = 0
 
 def allocate(group, k):
     allocation = [None] * len(group)
@@ -40,15 +38,20 @@ def allocate(group, k):
             allocation_score -= RANDOM_DATE_PENALTY
     return (allocation, allocation_score)
 
+
+best_allocation = [None] * num_people
+best_allocation_score = 0
+
+allocation = {'c': [], 'd': []}
+allocation_score = 0
+
 for _ in range(RUNS):
     journal_allocation, journal_allocation_score = allocate(people, 'j')
     if journal_allocation_score > best_allocation_score:
         best_allocation = journal_allocation
         best_allocation_score = journal_allocation_score
-
 journal_allocation = best_allocation
 journal_allocation_score = best_allocation_score
-print(f"Allocation of journal club presentations complete with score {journal_allocation_score}, order is {journal_allocation}.")
 
 best_allocation = [None] * num_people
 best_allocation_score = 0
@@ -57,13 +60,14 @@ for _ in range(RUNS):
     if case_allocation_score > best_allocation_score:
         best_allocation = case_allocation
         best_allocation_score = case_allocation_score
-
 case_allocation = best_allocation
 case_allocation_score = best_allocation_score
 
 distribution_score = 0
 for p in people:
     distribution_score = SPACING_WEIGHT * (num_people/2 - abs((num_people/2) - abs(journal_allocation.index(p['n']) - case_allocation.index(p['n']))))
+
+print(f"Allocation of journal club presentations complete with score {journal_allocation_score}, order is {journal_allocation}.")
 
 print(f"Allocation of case presentations complete with score {case_allocation_score}, order is {case_allocation}.")
 
