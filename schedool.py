@@ -4,14 +4,13 @@ import random
 
 people = [{"n": "Ali", "j": [0, 1, 2], "c": [2, 1, 0]},
           {"n": "Claire", "j": [1, 1, 7], "c": [6, 1, 2]},
-          {"n": "Dale", "j": [2, 4, 6], "c": [3, 1, 2]},
-          {"n": "Eric", "j": [3, 5, 6], "c": [7, 1, 2]},
+          {"n": "Dale", "j": [2, 3, 6], "c": [3, 1, 2]},
+          {"n": "Eric", "j": [5, 3, 6], "c": [7, 1, 2]},
           {"n": "Fred", "j": [4, 1, 4], "c": [4, 1, 2]},
           {"n": "George", "j": [5, 6, 3], "c": [7, 4, 1]},
-          {"n": "Hollie", "j": [6, 4, 1], "c": [7, 3, 2]},
-          {"n": "India", "j": [7, 1, 4], "c": [4, 7, 1]},
-          {"n": "Jack", "j": [8, 1, 2], "c": [3, 7, 4]}
-]
+          {"n": "Hollie", "j": [4, 5, 6], "c": [7, 3, 2]},
+          {"n": "India", "j": [1, 6, 7], "c": [4, 7, 1]},
+          {"n": "Jack", "j": [7, 2, 5], "c": [3, 7, 4]}]
 
 PICKED_DATE_WEIGHT = 2
 RANDOM_DATE_PENALTY = 2
@@ -46,9 +45,8 @@ def allocate(group, k):
 best_allocation = [None] * num_people
 best_allocation_score = 0
 
-allocation = {'c': [], 'j': [], 'score': 0}
-allocation_score = 0
-
+allocation = {'score': 0}
+score = 0
 for _ in range(RUNS):
     journal_allocation, journal_allocation_score, journal_picks, journal_randoms = allocate(people, 'j')
     if journal_allocation_score > best_allocation_score:
