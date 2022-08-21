@@ -18,7 +18,7 @@ picks = [
 journal_dates = [{'n': e['n'], 'd': [d - 1 if d != None else None for d in e['j']]} for e in picks]
 case_dates = [{'n': e['n'], 'd': [d - 1 if d!= None else None for d in e['c']]} for e in picks]
 journal_prealloc = ['LD Conference']
-case_prealloc = ['LD Conference', 'Amina Rawat']
+case_prealloc = ['LD Conference']
 
 PICKED_DATE_WEIGHT = 10
 RANDOM_DATE_PENALTY = 10
