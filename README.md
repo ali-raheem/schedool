@@ -7,8 +7,8 @@ Reports order of schedule for each task, as well as how many got their first, se
 Can weight various aspects of the rating system.
 
 ## Versions
-
-* schedool - Randomly shuffle brute force approach, single threaded.
-* simulated annealing - Fastest in general
-* hill climbing - meh.
-* PSO - Particle Swarm Optimization
+* Simulated annealing - Fastest in general, probably what you want.
+* Random - Randomly shuffle brute force approach, single threaded.
+* Hill climbing - meh.
+* PSO - Particle Swarm Optimization - Not great.
+* Genetic - Doesn't respect pre-allocations (might mutate them away).
