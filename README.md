@@ -11,3 +11,4 @@ Can weight various aspects of the rating system.
 * schedool - Randomly shuffle brute force approach, single threaded.
 * simulated annealing - Fastest in general
 * hill climbing - meh.
+* PSO - Particle Swarm Optimization
