@@ -11,4 +11,4 @@ Can weight various aspects of the rating system.
 * Random - Randomly shuffle brute force approach, single threaded.
 * Hill climbing - meh.
 * PSO - Particle Swarm Optimization - Not great.
-* Genetic - Doesn't respect pre-allocations (might mutate them away).
+* Genetic - Terrible.

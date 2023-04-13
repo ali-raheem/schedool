@@ -125,12 +125,22 @@ def energy_func(schedule):
 
     return -(journal_allocation_score + case_allocation_score + distribution_score)
 
-def mutate(schedule, mutation_rate):
-    for s in schedule:
-        if random.random() < mutation_rate:
-            idx1, idx2 = random.sample(range(len(s)), 2)
-            s[idx1], s[idx2] = s[idx2], s[idx1]
+def mutate(schedule, mutation_rate, prealloc):
+    for s, pre in zip(schedule, prealloc):
+        for i in range(len(s)):
+            if random.random() < mutation_rate and s[i]['n'] not in pre:
+                j = i
+                while j == i or s[j]['n'] in pre:
+                    j = random.randint(0, len(s) - 1)
+                s[i], s[j] = s[j], s[i]
     return schedule
+
+# def mutate(schedule, mutation_rate):
+#     for s in schedule:
+#         if random.random() < mutation_rate:
+#             idx1, idx2 = random.sample(range(len(s)), 2)
+#             s[idx1], s[idx2] = s[idx2], s[idx1]
+#     return schedule
 
 def crossover(parent1, parent2):
     index1 = random.randint(0, len(parent1) - 1)
@@ -155,8 +165,11 @@ def genetic_algorithm(init_population, energy_func, mutation_rate, num_generatio
             parent2 = tournament_selection(population, tournament_size)
             child1, child2 = crossover(parent1, parent2)
 
-            child1 = mutate(child1, mutation_rate)
-            child2 = mutate(child2, mutation_rate)
+            child1 = mutate(child1, mutation_rate, [journal_prealloc, case_prealloc])
+            child2 = mutate(child2, mutation_rate, [journal_prealloc, case_prealloc])
+
+            # child1 = mutate(child1, mutation_rate)
+            # child2 = mutate(child2, mutation_rate)
 
             new_population.append(child1)
             new_population.append(child2)
